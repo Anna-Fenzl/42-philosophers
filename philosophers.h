@@ -6,13 +6,15 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/04 16:23:12 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/05 18:30:44 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+# include <limits.h>
+# include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
 	/*
@@ -42,5 +44,66 @@
 		Compile and link with "-pthread".
 		On success, pthread_create() returns 0; on error, it returns an
 		error number, and the contents of *thread are undefined.
+
+	pthread_detach --> when a detached thread terminates, its resources are automatically released back to the system without
+						the need for another thread to join with the terminated thread
+		int pthread_detach(pthread_t thread);
+		
+		On success, pthread_detach() returns 0; on error, it returns an error number.
+	
+	pthread_join --> pthread_join() function waits for the thread specified by thread to terminate.  If that thread has already terminated, then
+						pthread_join() returns immediately.  The thread specified by thread must be joinable.
+		int pthread_join(pthread_t thread, void **retval);
+		
+		On success, pthread_join() returns 0; on error, it returns an error number.
+	
+	pthread_mutex_init --> shall initialize the mutex referenced by mutex with attributes specified by attr.
+							If attr is NULL, the default mutex attributes are used;
+							the effect shall be the same as passing the address of a default mutex attributes object.
+							Upon successful initialization, the state of the mutex becomes initialized and unlocked.
+		int pthread_mutex_init(pthread_mutex_t *restrict mutex;
+		
+		If successful, the pthread_mutex_destroy() and pthread_mutex_init() functions shall return zero;
+		otherwise, an error number shall be returned to indicate the error.
+
+	pthread_mutex_destroy --> shall destroy the mutex object referenced by mutex; the mutex object becomes,
+								in effect, uninitialized. An implementation may cause pthread_mutex_destroy() to set the object referenced by mutex to an invalid value.
+								A destroyed mutex object can be reinitialized using pthread_mutex_init();
+								the results of otherwise referencing the object after it has been destroyed are undefined.
+
+								It shall be safe to destroy an initialized mutex that is unlocked.
+								Attempting to destroy a locked mutex results in undefined behavior.
+		int pthread_mutex_destroy(pthread_mutex_t *mutex);
+
+		If successful, the pthread_mutex_destroy() and pthread_mutex_init() functions shall return zero;
+		otherwise, an error number shall be returned to indicate the error.
 	*/
+
+
+
+	typedef struct s_philo
+	{
+		int	id;
+	
+	}			t_philo;
+
+	typedef struct s_rules
+	{
+		int		num_phil;
+		int		time_die;
+		int		time_eat;
+		int		time_sleep;
+		int		must_sleep;
+		t_philo	philosoper[200];
+	
+	}			t_rules;
+
+
+
+	void	ft_error(int errorcode);
+	void	input_check(char **input, t_rules *rules);
+	int		atoi_check(const char *str);
+	
+	
+
 #endif
