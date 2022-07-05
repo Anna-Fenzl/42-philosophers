@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 18:30:44 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/05 21:47:30 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # include <sys/time.h>
 	/*
 	gettimeofday --> can get and set the time as well as a timezone
-	
+
 		int gettimeofday(struct timeval *restrict tv, struct timezone *restrict tz);
 		each of the parameters are structs in sys/time.h
 		timezone usally is NULL cause obsolet
-		return 0 on succes and -1 with errno in case of error
+		return 0 on success and -1 with errno in case of error
 	*/
 # include <pthread.h>
 	/*
@@ -80,10 +80,12 @@
 	*/
 
 
-
 	typedef struct s_philo
 	{
-		int	id;
+		int		id;
+		int		number;
+		int		left_fork;
+		int		right_fork;
 	
 	}			t_philo;
 
@@ -94,7 +96,8 @@
 		int		time_eat;
 		int		time_sleep;
 		int		must_sleep;
-		t_philo	philosoper[200];
+		pthread_t	philo[200];
+		t_philo	philosopher[200];
 	
 	}			t_rules;
 
@@ -103,6 +106,7 @@
 	void	ft_error(int errorcode);
 	void	input_check(char **input, t_rules *rules);
 	int		atoi_check(const char *str);
+	void	birth_philosophers(t_rules *rules);
 	
 	
 
