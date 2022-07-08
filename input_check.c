@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 18:46:47 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 19:42:29 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	put_into_philo_arr(t_rules *rules)
 		rules->philo[i].time_eat = rules->philo[0].time_eat;
 		rules->philo[i].time_sleep = rules->philo[0].time_sleep;
 		rules->philo[i].must_eat = rules->philo[0].must_eat;
+		rules->philo[i].left_fork = i;
+		rules->philo[i].right_fork = i + 1;
+		if (i + 1 >= rules->amount_phil)
+			rules->philo[i].right_fork = rules->philo[0].left_fork;
 		i++;
 	}
 }
