@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 21:46:57 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:49:32 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,29 @@ void	*routine(void *data)
 
 	philo = (t_philo *)data;
 	printf("hello from philo number %i\n", philo->number);
+	printf("time_die = %i\n", philo->time_die);
 	return (data);
 }
 
 void	birth_philosophers(t_rules *rules)
 {
-	int			i;
+	int	i;
 
 	i = 0;
-	while (i < rules->num_phil)
+	while (i < rules->amount_phil)
 	{
-		rules->philosopher[i].number = i;
-		if (pthread_create(&rules->philo[i], NULL, &routine, &rules->philosopher[i]) != 0)
+		rules->philo[i].number = i;
+		if (pthread_create(&rules->id_philo[i],
+				NULL, &routine, &rules->philo[i]) != 0)
 			ft_error(3);
 		i++;
 	}
 	i = 0;
-	while (i < rules->num_phil)
+	while (i < rules->amount_phil)
 	{
-		if (pthread_join(rules->philo[i], NULL) != 0)
+		if (pthread_join(rules->id_philo[i], NULL) != 0)
 			ft_error(4);
-		printf("thread %i has finsihed execution\n", i);
+		// printf("thread %i has finsihed execution\n", i);
 		i++;
 	}
-	
 }

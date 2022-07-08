@@ -6,27 +6,27 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 21:49:27 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:48:12 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void make_one_die(t_rules *rules)
-{
-	printf("hey, im %i phile\n", rules->num_phil);
-	
-}
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_rules rules;
+	t_rules	rules;
 
 	if (argc != 5 && argc != 6)
 		ft_error(0);
 	input_check(argv, &rules);
-	if (rules.num_phil == 1)
-		make_one_die(&rules);
-	else
-		birth_philosophers(&rules);
+	
+	printf("amount_phil =  %i\n", rules.amount_phil);
+	printf("time_die    =  %i\n", rules.philo[0].time_die);
+	printf("time_eat    =  %i\n", rules.philo[0].time_eat);
+	printf("time_sleep  =  %i\n", rules.philo[0].time_sleep);
+	printf("must_eat    = %i\n", rules.philo[0].must_eat);
+	printf("\n-------------------------\n");
+
+	birth_philosophers(&rules);
 }

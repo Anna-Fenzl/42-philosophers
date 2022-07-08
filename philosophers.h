@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 21:47:30 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:46:55 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-	/*
+/*
 	usleep --> suspends execution of the calling thread for (at least) usec microseconds.
 		..
 		unsigned int usecs;
@@ -79,35 +79,30 @@
 		otherwise, an error number shall be returned to indicate the error.
 	*/
 
+typedef struct s_philo
+{
+	int		id;
+	int		number;
+	int		left_fork;
+	int		right_fork;
+	int		time_die;
+	int		time_eat;
+	int		time_sleep;
+	int		must_eat;
 
-	typedef struct s_philo
-	{
-		int		id;
-		int		number;
-		int		left_fork;
-		int		right_fork;
-	
-	}			t_philo;
+}			t_philo;
 
-	typedef struct s_rules
-	{
-		int		num_phil;
-		int		time_die;
-		int		time_eat;
-		int		time_sleep;
-		int		must_sleep;
-		pthread_t	philo[200];
-		t_philo	philosopher[200];
-	
-	}			t_rules;
+typedef struct s_rules
+{
+	int			amount_phil;
+	pthread_t	id_philo[200];
+	t_philo		philo[200];
 
+}			t_rules;
 
-
-	void	ft_error(int errorcode);
-	void	input_check(char **input, t_rules *rules);
-	int		atoi_check(const char *str);
-	void	birth_philosophers(t_rules *rules);
-	
-	
+void	ft_error(int errorcode);
+void	input_check(char **input, t_rules *rules);
+int		atoi_check(const char *str);
+void	birth_philosophers(t_rules *rules);
 
 #endif

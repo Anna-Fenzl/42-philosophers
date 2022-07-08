@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:34:21 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 17:16:58 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/07 16:29:19 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 pthread_t mutex;
 
-void	*routine(void *data)
+void	routine()
 {
-	int *my_data;
-
-	my_data = (int *)data;
-	printf("hello from thread number %i\n", *my_data);
-	return (data);
+	int	i;
+	
+	i = 0;
+	while (i < 100)
+	{
+		i++;
+	}
 }
 
 int	main(void)
@@ -31,7 +33,7 @@ int	main(void)
 	i = 0;
 	while (i < 10)
 	{
-		if (pthread_create(&id[i], NULL, &routine, &i)!= 0)
+		if (pthread_create(&id[i], NULL, &routine, NULL)!= 0)
 		{
 			printf("ERROR: could not create\n");
 			exit(1);	
