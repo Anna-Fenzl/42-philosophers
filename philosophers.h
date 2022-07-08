@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 16:18:45 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:44:14 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,13 @@
 
 typedef struct s_philo
 {
-	int		id;
 	int		number;
 	int		left_fork;
 	int		right_fork;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		must_eat;
+	long	time_die;
+	long	time_eat;
+	long	time_sleep;
+	long	must_eat;
 
 }			t_philo;
 
@@ -107,5 +106,7 @@ void	ft_error(int errorcode);
 void	input_check(char **input, t_rules *rules);
 int		atoi_check(const char *str);
 void	birth_philosophers(t_rules *rules);
+void	die_lonely(t_rules *rules);
+
 
 #endif

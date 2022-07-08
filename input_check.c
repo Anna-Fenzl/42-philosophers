@@ -6,13 +6,13 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 15:44:24 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:46:47 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	fill_into_philo_arr(t_rules *rules)
+void	put_into_philo_arr(t_rules *rules)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ void	input_check(char **input, t_rules *rules)
 	}
 	else
 		rules->philo[0].must_eat = -1;
-	fill_into_philo_arr(rules);
+	put_into_philo_arr(rules);
 	if (rules->amount_phil < 1 || rules->amount_phil > 200
 		|| rules->philo->time_die < 0 || rules->philo->time_eat < 0
 		|| rules->philo->time_sleep < 1)

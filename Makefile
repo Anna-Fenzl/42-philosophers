@@ -6,7 +6,7 @@
 #    By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:51:31 by afenzl            #+#    #+#              #
-#    Updated: 2022/07/08 16:26:49 by afenzl           ###   ########.fr        #
+#    Updated: 2022/07/08 18:26:41 by afenzl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM := rm -f
 
-SRC = main.c error.c input_check.c atoi.c time.c birth.c 
+SRC = main.c error.c input_check.c atoi.c time.c birth.c die_alone.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
