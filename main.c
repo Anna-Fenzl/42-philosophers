@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 15:48:12 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 16:01:07 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	main(int argc, char **argv)
 	printf("\n-------------------------\n");
 
 	birth_philosophers(&rules);
+	// system("leaks philo");
 }

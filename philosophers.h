@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 15:46:55 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/08 16:18:45 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <sys/time.h>
 	/*
 	gettimeofday --> can get and set the time as well as a timezone
-
 		int gettimeofday(struct timeval *restrict tv, struct timezone *restrict tz);
+	
 		each of the parameters are structs in sys/time.h
 		timezone usally is NULL cause obsolet
 		return 0 on success and -1 with errno in case of error
@@ -99,6 +99,9 @@ typedef struct s_rules
 	t_philo		philo[200];
 
 }			t_rules;
+
+void	sleep_ms(int ms);
+long	get_current_time_ms(void);
 
 void	ft_error(int errorcode);
 void	input_check(char **input, t_rules *rules);
