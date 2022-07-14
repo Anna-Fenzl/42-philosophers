@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 19:13:56 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:03:37 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdbool.h>
+
 /*
 	usleep --> suspends execution of the calling thread for (at least) usec microseconds.
 		..
@@ -79,35 +81,39 @@
 		otherwise, an error number shall be returned to indicate the error.
 	*/
 
+typedef struct s_rules t_rules;
+
 typedef struct s_philo
 {
-	int		number;
-	int		must_eat;
-	int		did_eat;
-	int		left_fork;
-	int		right_fork;
-	long	time_die;
-	long	time_eat;
-	long	time_sleep;
+	int					number;
+	bool				died;
+	bool				has_fork;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
+	t_rules				*data;
 
 }			t_philo;
 
 typedef struct s_rules
 {
-	int			amount_phil;
-	pthread_t	id_philo[200];
-	t_philo		philo[200];
+	int				amount_phil;
+	int				must_eat;
+	long			time_die;
+	long			time_eat;
+	long			time_sleep;
+	t_philo			philo[200];
+	pthread_mutex_t	forks[200];
+	pthread_mutex_t	*wait_to_start;
 
 }			t_rules;
 
 void	sleep_ms(int ms);
 long	get_current_time_ms(void);
-
 void	ft_error(int errorcode);
 void	input_check(char **input, t_rules *rules);
 int		atoi_check(const char *str);
 void	birth_philosophers(t_rules *rules);
-void	die_lonely(t_rules *rules);
-
+void	must_eat_checker(t_rules *rules);
+void	checker(t_rules *rules);
 
 #endif
