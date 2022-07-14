@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/14 19:03:37 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:20:11 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ typedef struct s_philo
 
 typedef struct s_rules
 {
-	int				amount_phil;
-	int				must_eat;
-	long			time_die;
-	long			time_eat;
-	long			time_sleep;
-	t_philo			philo[200];
-	pthread_mutex_t	forks[200];
-	pthread_mutex_t	*wait_to_start;
+	int					amount_phil;
+	int					must_eat;
+	long				time_die;
+	long				time_eat;
+	long				time_sleep;
+	t_philo				philo[200];
+	pthread_mutex_t		forks[200];
+	pthread_mutex_t		*wait_to_start;
 
 }			t_rules;
 
@@ -113,7 +113,5 @@ void	ft_error(int errorcode);
 void	input_check(char **input, t_rules *rules);
 int		atoi_check(const char *str);
 void	birth_philosophers(t_rules *rules);
-void	must_eat_checker(t_rules *rules);
-void	checker(t_rules *rules);
 
 #endif

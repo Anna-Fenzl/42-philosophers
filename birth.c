@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/14 19:03:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:19:25 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*birth(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	sleep_ms(philo->number * 100);
+	// sleep_ms(philo->number * 100);
 	printf("%ld %d is born\n", get_current_time_ms(), philo->number);
 	printf("he (%i) has in his left %p\n", philo->number, philo->left_fork);
 	printf("he (%i) has in his right %p\n", philo->number, philo->right_fork);
