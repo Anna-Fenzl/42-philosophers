@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 19:00:40 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:52:48 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init(t_rules *rules)
 	{
 		s = &rules->philo[i];
 		s->data = rules;
-		s->has_fork = false;
+		s->times_eaten = 0;
 		s->left_fork = &rules->forks[i];
 		if (i == rules->amount_phil - 1)
 			s->right_fork = &rules->forks[0];

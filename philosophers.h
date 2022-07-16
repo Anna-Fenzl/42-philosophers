@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 16:49:17 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:51:49 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,11 @@ typedef struct s_rules t_rules;
 typedef struct s_philo
 {
 	int					number;
-	long				last_meal;
+	int					times_eaten;
 	long				limit;
-	bool				has_fork;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-	const t_rules		*data;
+	t_rules				*data;
 
 }			t_philo;
 
@@ -102,7 +101,7 @@ typedef struct s_rules
 	long				time_die;
 	long				time_eat;
 	long				time_sleep;
-	bool				one_died;
+	bool				death;
 	t_philo				philo[200];
 	pthread_mutex_t		forks[200];
 	pthread_mutex_t		*wait_to_start;

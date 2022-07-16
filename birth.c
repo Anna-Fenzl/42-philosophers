@@ -6,24 +6,63 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 16:43:30 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:53:30 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// inplement forks
-// while loop?
-// check the structs to check if they died???
+void	take_forks_and_eat(t_philo *philo)
+{
+	pthread_mutex_lock(philo->left_fork);
+	printf("%ld %d has taken a fork\n", get_current_time_ms(), philo->number);
+	pthread_mutex_lock(philo->right_fork);
+	printf("%ld %d has taken a fork\n", get_current_time_ms(), philo->number);
+	printf("%ld %d is eating ---> %i * time\n", get_current_time_ms(), philo->number, philo->times_eaten);
+	philo->times_eaten++;
+	sleep_ms(philo->data->time_eat);
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
+}
+
+void	take_nap(t_philo *philo)
+{
+	printf("%ld %d is sleeping\n", get_current_time_ms(), philo->number);
+	sleep_ms(philo->data->time_sleep);
+}
+
+int	check_if_dead(t_philo *philo)
+{
+	if (get_current_time_ms() >= philo->limit)
+	{
+		philo->data->death = true;
+		printf("%ld %i --->DIED\n", get_current_time_ms(), philo->number);
+		return (1);
+	}
+	return (0);
+}
 
 void	*birth(void *data)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	// sleep_ms(philo->number * 1000);
-	printf("%ld %d is born\n", get_current_time_ms(), philo->number);
-	printf("%ld he(%i) ---->DIED\n", get_current_time_ms(), philo->number);
+	printf("%ld %d is thinking\n", get_current_time_ms(), philo->number);
+	if ((philo->number & 1) == 1)
+		sleep_ms(5);
+	philo->limit = get_current_time_ms() + philo->data->time_die;
+	while (true)
+	{
+		take_forks_and_eat(philo);
+		if (check_if_dead(philo) == 1)
+			break ;
+		take_nap(philo);
+		if (check_if_dead(philo) == 1)
+			break ;
+		philo->limit = get_current_time_ms() + philo->data->time_die;
+		if (check_if_dead(philo) == 1)
+			break ;
+	}
 	return (data);
 }
 
@@ -33,7 +72,13 @@ void	birth_philosophers(t_rules *rules)
 	pthread_t	id_philo[200];
 
 	i = 0;
-	pthread_mutex_init(rules->forks, NULL);
+	while (i < rules->amount_phil)
+	{
+		if (pthread_mutex_init(&(rules->forks[i]), NULL) != 0)
+			ft_error(3);
+		i++;
+	}
+	i = 0;
 	while (i < rules->amount_phil)
 	{
 		rules->philo[i].number = i + 1;
