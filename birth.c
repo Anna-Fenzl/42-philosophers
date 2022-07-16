@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 22:07:27 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 22:17:28 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 	---> 1 segfaults in line 61
 	do the must eat stuff
 	cant destroy mutex cause the other one is eating rn ./philo 2  90 60 29 --> pthread_detach???
+	-->fixed it with another while loop;
 */
 
 void	take_forks_and_eat(t_philo *philo)
@@ -74,7 +75,18 @@ void	*birth(void *data)
 		if (check_if_dead(philo) == 1)
 			break ;
 	}
+	philo->data->death = true;
 	return (data);
+}
+
+void	checker(t_rules *rules)
+{
+	sleep_ms(10);
+	while (true)
+	{
+		if (rules->death == true)
+			break ;
+	}
 }
 
 void	birth_philosophers(t_rules *rules)
@@ -98,6 +110,11 @@ void	birth_philosophers(t_rules *rules)
 	{
 		if (pthread_join(id_philo[i], NULL) != 0)
 			ft_error(4);
+		i++;
+	}
+	i = 0;
+	while (i < rules->amount_phil)
+	{
 		if (pthread_mutex_destroy(&rules->forks[i]) != 0)
 			ft_error(6);
 		i++;
