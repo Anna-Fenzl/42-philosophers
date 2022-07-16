@@ -6,11 +6,20 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 20:53:30 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 22:07:27 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+/*
+	implement a death checker
+	make all of them live longer
+	try with 1 2 3 philosophers
+	---> 1 segfaults in line 61
+	do the must eat stuff
+	cant destroy mutex cause the other one is eating rn ./philo 2  90 60 29 --> pthread_detach???
+*/
 
 void	take_forks_and_eat(t_philo *philo)
 {
@@ -18,7 +27,8 @@ void	take_forks_and_eat(t_philo *philo)
 	printf("%ld %d has taken a fork\n", get_current_time_ms(), philo->number);
 	pthread_mutex_lock(philo->right_fork);
 	printf("%ld %d has taken a fork\n", get_current_time_ms(), philo->number);
-	printf("%ld %d is eating ---> %i * time\n", get_current_time_ms(), philo->number, philo->times_eaten);
+	printf("%ld %d is eating ---> %i * time\n", get_current_time_ms(),
+		philo->number, philo->times_eaten);
 	philo->times_eaten++;
 	sleep_ms(philo->data->time_eat);
 	pthread_mutex_unlock(philo->left_fork);
@@ -28,6 +38,9 @@ void	take_forks_and_eat(t_philo *philo)
 void	take_nap(t_philo *philo)
 {
 	printf("%ld %d is sleeping\n", get_current_time_ms(), philo->number);
+	if (get_current_time_ms() + philo->data->time_sleep > philo->limit)
+		philo->data->death = true;
+	// should i check if dead here?
 	sleep_ms(philo->data->time_sleep);
 }
 
@@ -57,8 +70,6 @@ void	*birth(void *data)
 		if (check_if_dead(philo) == 1)
 			break ;
 		take_nap(philo);
-		if (check_if_dead(philo) == 1)
-			break ;
 		philo->limit = get_current_time_ms() + philo->data->time_die;
 		if (check_if_dead(philo) == 1)
 			break ;
@@ -76,11 +87,6 @@ void	birth_philosophers(t_rules *rules)
 	{
 		if (pthread_mutex_init(&(rules->forks[i]), NULL) != 0)
 			ft_error(3);
-		i++;
-	}
-	i = 0;
-	while (i < rules->amount_phil)
-	{
 		rules->philo[i].number = i + 1;
 		if (pthread_create(&id_philo[i], NULL,
 				&birth, &rules->philo[i]) != 0)
@@ -92,26 +98,8 @@ void	birth_philosophers(t_rules *rules)
 	{
 		if (pthread_join(id_philo[i], NULL) != 0)
 			ft_error(4);
+		if (pthread_mutex_destroy(&rules->forks[i]) != 0)
+			ft_error(6);
 		i++;
 	}
-	pthread_mutex_destroy(rules->forks);
 }
-
-	// sleep_ms(philo->number * 100);
-	// printf("he (%i) has this time to die %li\n", philo->number, philo->data->time_die);
-	// printf("he (%i) has this time to eat %li\n", philo->number, philo->data->time_eat);
-	// printf("he (%i) has this time to sleep %li\n", philo->number, philo->data->time_sleep);
-	// printf("he (%i) has this time he must eat %i\n", philo->number, philo->data->must_eat);
-	// printf("he (%i) has in his left %p\n", philo->number, philo->left_fork);
-	// printf("he (%i) has in his right %p\n", philo->number, philo->right_fork);
-	// printf("he (%i) time_die is %li\n", philo->number, philo->data->time_die);
-	// printf("he (%i) time_eat is %li\n", philo->number, philo->data->time_eat);
-	// printf("he (%i) time_sleep die is %li\n", philo->number, philo->data->time_sleep);
-	// printf("he (%i) must_eat is %i\n", philo->number, philo->data->must_eat);
-	// philo->last_meal = get_current_time_ms();
-	// philo->limit = philo->last_meal + philo->data->time_die;
-	// printf("%ld %d is born\n", get_current_time_ms(), philo->number);
-	// while (get_current_time_ms() < philo->limit)
-	// {
-	// 	cotinue ;
-	// }
