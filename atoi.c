@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:23:25 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/05 17:31:53 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 18:59:37 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 static long	ft_numcpy(int i, long res, char *p)
 {
+	long	tmp;
+
 	while (p[i] != '\0')
 	{
+		tmp = res;
 		if (p[i] >= '0' && p[i] <= '9')
 		{
 			res = res * 10 + p[i] - '0';
 			i++;
-			if (i > 11 && res > INT_MAX)
-				ft_error(1);
 		}
 		else
 			ft_error(1);
+		if ((tmp < 0 && res > 0) || (tmp > 0 && res < 0))
+			ft_error(2);
 	}
 	return (res);
 }
 
-int	atoi_check(const char *str)
+long	atoi_check(const char *str)
 {
 	int				i;
 	long			res;
@@ -49,7 +52,5 @@ int	atoi_check(const char *str)
 		i++;
 	}
 	res = ft_numcpy(i, res, p);
-	if ((res > INT_MAX && n == 1) || (res > 2147483648 && n == -1))
-		ft_error(1);
 	return (res * n);
 }

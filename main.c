@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/14 19:15:07 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:51:17 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	printf("time_sleep  =  %li\n", rules.time_sleep);
 	printf("must_eat    = %i\n", rules.must_eat);
 	printf("\n-------------------------\n");
-	birth_philosophers(&rules);
+	// birth_philosophers(&rules);
 	// system("leaks philo");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/14 19:20:11 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:49:17 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ typedef struct s_rules t_rules;
 typedef struct s_philo
 {
 	int					number;
-	bool				died;
+	long				last_meal;
+	long				limit;
 	bool				has_fork;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-	t_rules				*data;
+	const t_rules		*data;
 
 }			t_philo;
 
@@ -101,6 +102,7 @@ typedef struct s_rules
 	long				time_die;
 	long				time_eat;
 	long				time_sleep;
+	bool				one_died;
 	t_philo				philo[200];
 	pthread_mutex_t		forks[200];
 	pthread_mutex_t		*wait_to_start;
@@ -111,7 +113,7 @@ void	sleep_ms(int ms);
 long	get_current_time_ms(void);
 void	ft_error(int errorcode);
 void	input_check(char **input, t_rules *rules);
-int		atoi_check(const char *str);
+long	atoi_check(const char *str);
 void	birth_philosophers(t_rules *rules);
 
 #endif
