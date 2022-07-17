@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/17 15:25:43 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/17 16:52:37 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,7 @@
 	do the must eat stuff
 */
 
-// int	deathlock_with_one_philo(t_philo *philo)
-// {
-// 	printf("its sleeping for %li \n", philo->limit - get_current_time_ms());
-// 	sleep_ms(philo->limit - get_current_time_ms());
-// 	pthread_mutex_unlock(philo->left_fork);
-// 	if (check_if_dead(philo) == 1)
-// 		return (1);
-// 	return (0);
-// }
-// ---> or implement something that let the forks go
 
-// need to check if its gonna die while taking one fork
 int	take_forks_and_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
@@ -94,8 +83,6 @@ void	birth_philosophers(t_rules *rules)
 		if (pthread_create(&rules->id_philo[i], NULL,
 				&birth, &rules->philo[i]) != 0)
 			ft_error(3);
-		if (pthread_detach(rules->id_philo[i]) != 0)
-			ft_error(4);
 		i++;
 	}
 	if (pthread_join(rules->id_philo[200], NULL) != 0)
@@ -103,16 +90,14 @@ void	birth_philosophers(t_rules *rules)
 	i = 0;
 	while (i < rules->amount_phil)
 	{
+		if (pthread_join(rules->id_philo[i], NULL) != 0)
+			ft_error(4);
+		i++;
+	}
+	while (i < rules->amount_phil)
+	{
 		if (pthread_mutex_destroy(&rules->forks[i]) != 0)
-			printf("could not destroy this mutex %i\n", i);
+			ft_error(6);
 		i++;
 	}
 }
-
-	// i = 0;
-	// while (i < rules->amount_phil)
-	// {
-	// 	if (pthread_join(rules->id_philo[i], NULL) != 0)
-	// 		ft_error(4);
-	// 	i++;
-	// }
