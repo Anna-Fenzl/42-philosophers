@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/16 20:51:49 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/17 14:48:26 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,28 @@ typedef struct s_rules
 	long				time_eat;
 	long				time_sleep;
 	bool				death;
-	t_philo				philo[200];
+	t_philo				philo[201];
+	pthread_t			id_philo[201];
 	pthread_mutex_t		forks[200];
 	pthread_mutex_t		*wait_to_start;
 
 }			t_rules;
 
+// utils
 void	sleep_ms(int ms);
 long	get_current_time_ms(void);
 void	ft_error(int errorcode);
+
+// input
 void	input_check(char **input, t_rules *rules);
 long	atoi_check(const char *str);
+
+// philos
 void	birth_philosophers(t_rules *rules);
+
+// checker
+int		check_if_dead(t_philo *philo);
+void	*waiter(void *data);
+
 
 #endif
