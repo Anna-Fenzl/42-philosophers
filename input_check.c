@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/17 13:59:00 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/17 17:42:44 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	input_check(char **input, t_rules *rules)
 	}
 	else
 		rules->must_eat = -1;
+	rules->death = false;
 	if (rules->amount_phil >= 1)
 		init(rules);
 	if (rules->amount_phil < 1 || rules->amount_phil > 200
