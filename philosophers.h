@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/17 14:48:26 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/17 15:25:10 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@
 
 		If successful, the pthread_mutex_destroy() and pthread_mutex_init() functions shall return zero;
 		otherwise, an error number shall be returned to indicate the error.
+	
+	pthread_mutex_unlock --> n shall release the mutex object referenced by mutex.
+							The manner in which a mutex is released is dependent upon the mutex's type attribute.
+							If there are threads blocked on the mutex object referenced by mutex when pthread_mutex_unlock() is called,
+							resulting in the mutex becoming available, the scheduling policy shall determine which thread shall acquire the mutex.
+		int pthread_mutex_unlock(pthread_mutex_t *mutex);
 	*/
 
 typedef struct s_rules t_rules;
@@ -124,6 +130,5 @@ void	birth_philosophers(t_rules *rules);
 // checker
 int		check_if_dead(t_philo *philo);
 void	*waiter(void *data);
-
 
 #endif

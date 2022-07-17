@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/17 14:47:46 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/17 15:21:38 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	*waiter(void *data)
 		{
 			while (i < rules->amount_phil)
 			{
-				if (pthread_detach(rules->id_philo[i]) != 0)
-					ft_error(4);
+				pthread_mutex_unlock(&rules->forks[i]);
 				i++;
 			}
 			return (data);
@@ -38,10 +37,12 @@ void	*waiter(void *data)
 
 int	check_if_dead(t_philo *philo)
 {
-	if (get_current_time_ms() >= philo->limit)
+	if (philo->data->death == true)
+		return (1);
+	else if (get_current_time_ms() >= philo->limit)
 	{
-		philo->data->death = true;
 		printf("%ld %i --->DIED\n", get_current_time_ms(), philo->number);
+		philo->data->death = true;
 		return (1);
 	}
 	return (0);
