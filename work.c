@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos.c                                           :+:      :+:    :+:   */
+/*   work.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:13:58 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:54:01 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	take_forks(t_philo *philo)
 	if (philo->data->amount_phil == 1)
 	{
 		sleep_ms(philo->limit - get_current_time_ms());
+		pthread_mutex_unlock(philo->left_fork);
 		check_if_dead(philo);
+		philo->data->death = true;
 		return (1);
 	}
 	pthread_mutex_lock(philo->right_fork);
@@ -43,6 +45,7 @@ void	take_nap(t_philo *philo)
 	print_feedback(philo, 's');
 	if (philo->limit < get_current_time_ms() + philo->data->time_sleep)
 	{
+		printf("heyy\n");
 		sleep_ms(philo->data->time_sleep);
 		check_if_dead(philo);
 		return ;
@@ -50,7 +53,7 @@ void	take_nap(t_philo *philo)
 	sleep_ms(philo->data->time_sleep);
 }
 
-void	*birth(void *data)
+void	*work(void *data)
 {
 	t_philo	*philo;
 

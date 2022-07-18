@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:05:22 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:54:17 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_if_dead(t_philo *philo)
 		return (1);
 	else if (get_current_time_ms() >= philo->limit)
 	{
-		printf("%ld %i --->DIED\n", get_current_time_ms(), philo->number);
+		print_feedback(philo, 'd');
 		philo->data->death = true;
 		return (1);
 	}

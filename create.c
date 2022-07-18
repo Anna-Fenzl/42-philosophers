@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:14:43 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:48:43 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	create_philos(t_rules *rules)
 		if (pthread_mutex_init(&(rules->forks[i]), NULL) != 0)
 			ft_error(3);
 		rules->philo[i].number = i + 1;
+		rules->birth = get_current_time_ms();
 		if (pthread_create(&rules->id_philo[i], NULL,
-				&birth, &rules->philo[i]) != 0)
+				&work, &rules->philo[i]) != 0)
 			ft_error(3);
 		i++;
 	}
@@ -57,11 +58,11 @@ void	join_threads(t_rules *rules)
 	}
 }
 
-	// lock_start(rules);
-	// unlock_start(rules);
 void	create(t_rules *rules)
 {
 	create_checker(rules);
+	// lock_start(rules);
 	create_philos(rules);
+	// unlock_start(rules);
 	join_threads(rules);
 }

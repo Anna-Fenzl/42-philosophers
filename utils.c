@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:17:44 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:51:12 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ long	atoi_check(const char *str)
 	return (res * n);
 }
 
+// could use timestamp function
 void	print_feedback(t_philo *philo, char c)
 {
 	if (philo->data->death == false)
@@ -69,7 +70,9 @@ void	print_feedback(t_philo *philo, char c)
 		else if (c == 'r')
 			printf("%ld %d has taken right fork\n", get_current_time_ms(), philo->number);
 		else if (c == 'l')
-			printf("%ld %d has taken left fork\n", get_current_time_ms(), philo->number);	
+			printf("%ld %d has taken left fork\n", get_current_time_ms(), philo->number);
+		else if (c == 'd')
+			printf("%ld %d ------->DIED\n", get_current_time_ms(), philo->number);
 	}
 }
 

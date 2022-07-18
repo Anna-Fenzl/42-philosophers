@@ -6,11 +6,16 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:18:06 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/08 18:37:31 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:36:00 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+long	timestamp(long birth)
+{
+	return (get_current_time_ms() - birth);
+}
 
 long	get_current_time_ms(void)
 {
