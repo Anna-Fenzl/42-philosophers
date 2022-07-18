@@ -6,13 +6,15 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/17 17:45:19 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:05:22 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 // thread that constantly checks if dead
+	// while loop is inefficient--> use a lock for rules->death 
+	// need to unlock the threads in themselfes
 void	*waiter(void *data)
 {
 	t_rules	*rules;
@@ -20,9 +22,7 @@ void	*waiter(void *data)
 
 	i = 0;
 	rules = (t_rules *)data;
-	sleep_ms(10);
-	// while loop is inefficient--> use a lock for rules->death 
-	// need to unlock the threads in themselfes
+	sleep_ms(5);
 	while (true)
 	{
 		if (rules->death == true)
