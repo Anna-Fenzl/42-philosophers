@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 14:37:02 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:24 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	print_feedback(t_philo *philo, char c)
 }
 
 // ----> im using EXIT !!!!
-int	ft_error(int errorcode)
+void	ft_error(int errorcode)
 {
 	printf("ERROR:	");
 	if (errorcode == 0)

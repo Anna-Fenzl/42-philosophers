@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 14:24:50 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:14 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	join_threads(t_rules *rules)
 void	create(t_rules *rules)
 {
 	create_checker(rules);
-	// lock_start(rules);
 	create_philos(rules);
 	join_threads(rules);
-	// unlock_start(rules);
 }
+	// lock_start(rules);
+	// unlock_start(rules);
