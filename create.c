@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:48:43 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:24:50 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	create_checker(t_rules *rules)
 {
-	if (pthread_create(&rules->id_philo[200], NULL, &waiter, rules) != 0)
+	if (pthread_create(&rules->id_philo[rules->amount_phil],
+			NULL, &waiter, rules) != 0)
 		ft_error(3);
 }
 
@@ -47,7 +48,7 @@ void	join_threads(t_rules *rules)
 			ft_error(4);
 		i++;
 	}
-	if (pthread_join(rules->id_philo[200], NULL) != 0)
+	if (pthread_join(rules->id_philo[rules->amount_phil], NULL) != 0)
 		ft_error(4);
 	i = 0;
 	while (i < rules->amount_phil)
@@ -63,6 +64,6 @@ void	create(t_rules *rules)
 	create_checker(rules);
 	// lock_start(rules);
 	create_philos(rules);
-	// unlock_start(rules);
 	join_threads(rules);
+	// unlock_start(rules);
 }

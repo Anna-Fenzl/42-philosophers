@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:54:17 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:24:01 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,30 @@ void	*waiter(void *data)
 	t_rules	*rules;
 	int		i;
 
-	i = 0;
 	rules = (t_rules *)data;
 	sleep_ms(5);
 	while (true)
 	{
-		if (rules->death == true)
+		i = 0;
+		while (i < rules->amount_phil)
 		{
-			while (i < rules->amount_phil)
+			if (rules->philo[i].death == true)
 			{
-				pthread_mutex_unlock(&rules->forks[i]);
-				i++;
+				return (data);
 			}
-			return (data);
+			i++;
 		}
 	}
 }
 
 int	check_if_dead(t_philo *philo)
 {
-	if (philo->data->death == true)
+	if (philo->death == true)
 		return (1);
 	else if (get_current_time_ms() >= philo->limit)
 	{
 		print_feedback(philo, 'd');
-		philo->data->death = true;
+		philo->death = true;
 		return (1);
 	}
 	return (0);

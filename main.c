@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:32:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 12:15:08 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 	
 	let them start at the same time
 	start time from 00000000
-	printfs in extra function
 	logic for 1 2 3 philos
 	--> one is done
 	make all of them live longer
 	do the must eat stuff
 	need to put a lock around philo->data->death -->race conditions
+	// printfs in extra function
 	// one philosopher
 	// check for death or unlock fork if i cant take second one
 */

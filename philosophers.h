@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:36:34 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:26:43 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,18 @@
 		int pthread_mutex_unlock(pthread_mutex_t *mutex);
 	*/
 
-typedef struct s_rules t_rules;
+typedef struct s_rules	t_rules;
 
 typedef struct s_philo
 {
 	int					number;
 	int					times_eaten;
 	long				limit;
-	pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
+	bool				left;
+	bool				right;
+	bool				death;
+	pthread_mutex_t		left_fork;
+	pthread_mutex_t		right_fork;
 	t_rules				*data;
 
 }			t_philo;
@@ -108,8 +111,7 @@ typedef struct s_rules
 	long				time_eat;
 	long				time_sleep;
 	long				birth;
-	bool				death;
-	t_philo				philo[201];
+	t_philo				*philo;
 	pthread_t			id_philo[201];
 	pthread_mutex_t		forks[200];
 	pthread_mutex_t		wait_to_start;
@@ -125,7 +127,8 @@ long	timestamp(long birth);
 void	ft_error(int errorcode);
 void	lock_start(t_rules *rules);
 void	unlock_start(t_rules *rules);
-void	print_feedback(t_philo *philo, char c);
+void	unlock_forks(t_rules *rules);
+int		print_feedback(t_philo *philo, char c);
 
 // input
 void	input_check(char **input, t_rules *rules);
@@ -135,7 +138,6 @@ void	create(t_rules *rules);
 
 // philos
 void	*work(void *data);
-
 
 // checker
 int		check_if_dead(t_philo *philo);

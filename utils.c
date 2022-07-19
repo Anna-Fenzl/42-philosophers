@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:51:12 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:37:02 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,33 @@ long	atoi_check(const char *str)
 	return (res * n);
 }
 
-// could use timestamp function
-void	print_feedback(t_philo *philo, char c)
+int	print_feedback(t_philo *philo, char c)
 {
-	if (philo->data->death == false)
+	long	birth;
+
+	birth = philo->data->birth;
+	if (philo->death == false)
 	{
 		if (c == 't')
-			printf("%ld %d is thinking\n", get_current_time_ms(), philo->number);
+			printf("%ld %d is thinking\n", timestamp(birth), philo->number);
 		else if (c == 's')
-			printf("%ld %d is sleeping\n", get_current_time_ms(), philo->number);
+			printf("%ld %d is sleeping\n", timestamp(birth), philo->number);
 		else if (c == 'e')
-			printf("%ld %d is eating ---> %i * time\n", get_current_time_ms(),
+			printf("%ld %d is eating ---> %i * time\n", timestamp(birth),
 				philo->number, philo->times_eaten);
 		else if (c == 'r')
-			printf("%ld %d has taken right fork\n", get_current_time_ms(), philo->number);
+			printf("%ld %d has taken right fork\n", timestamp(birth), philo->number);
 		else if (c == 'l')
-			printf("%ld %d has taken left fork\n", get_current_time_ms(), philo->number);
+			printf("%ld %d has taken left fork\n", timestamp(birth), philo->number);
 		else if (c == 'd')
-			printf("%ld %d ------->DIED\n", get_current_time_ms(), philo->number);
+			printf("%ld %d ------->DIED\n", timestamp(birth), philo->number);
+		return (0);
 	}
+	return (1);
 }
 
-void	ft_error(int errorcode)
+// ----> im using EXIT !!!!
+int	ft_error(int errorcode)
 {
 	printf("ERROR:	");
 	if (errorcode == 0)
@@ -97,5 +102,5 @@ void	ft_error(int errorcode)
 		printf("could not lock mutex!\n");
 	else if (errorcode == 8)
 		printf("could not unlock mutex!\n");
-	exit(1);
+	exit (1);
 }
