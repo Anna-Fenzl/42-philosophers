@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:24 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:26:13 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static long	ft_numcpy(int i, long res, char *p)
 			i++;
 		}
 		else
-			ft_error(1);
+			return (-1);
 		if ((tmp < 0 && res > 0) || (tmp > 0 && res < 0))
-			ft_error(2);
+			return (-1);
 	}
 	return (res);
 }
@@ -46,7 +46,7 @@ long	atoi_check(const char *str)
 	if (p[i] == '-' || p[i] == '+')
 	{
 		if (p[i + 1] == '\0')
-			ft_error(1);
+			return (-1);
 		if (p[i] == '-')
 			n = -1;
 		i++;
@@ -80,27 +80,7 @@ int	print_feedback(t_philo *philo, char c)
 	return (1);
 }
 
-// ----> im using EXIT !!!!
-void	ft_error(int errorcode)
+void	ft_error(void)
 {
-	printf("ERROR:	");
-	if (errorcode == 0)
-		printf("not the right amount of parameters!\n");
-	else if (errorcode == 1)
-		printf("not a valid number!\n");
-	else if (errorcode == 2)
-		printf("the number is not in the right range!\n");
-	else if (errorcode == 3)
-		printf("could not create thread!\n");
-	else if (errorcode == 4)
-		printf("could not join thread!\n");
-	else if (errorcode == 5)
-		printf("could not init mutex!\n");
-	else if (errorcode == 6)
-		printf("could not destroy mutex!\n");
-	else if (errorcode == 7)
-		printf("could not lock mutex!\n");
-	else if (errorcode == 8)
-		printf("could not unlock mutex!\n");
-	exit (1);
+	printf("ERROR:	input not valid\n");
 }

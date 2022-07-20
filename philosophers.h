@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:00 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:25:03 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ long	get_current_time_ms(void);
 long	timestamp(long birth);
 
 // utils
-void	ft_error(int errorcode);
+void	ft_error(void);
 void	lock_start(t_rules *rules);
 void	unlock_start(t_rules *rules);
 void	unlock_forks(t_rules *rules);
 int		print_feedback(t_philo *philo, char c);
 
 // input
-void	input_check(char **input, t_rules *rules);
+int		input_check(char **input, t_rules *rules);
 long	atoi_check(const char *str);
 
 void	create(t_rules *rules);
@@ -75,6 +75,6 @@ void	*work(void *data);
 
 // checker
 int		check_if_dead(t_philo *philo);
-void	*waiter(void *data);
+void	*checker(void *data);
 
 #endif

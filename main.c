@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 12:15:08 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:27:18 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 		-->threads
 	
 	let them start at the same time
-	start time from 00000000
 	logic for 1 2 3 philos
 	--> one is done
 	make all of them live longer
 	do the must eat stuff
 	need to put a lock around philo->data->death -->race conditions
+	// start time from 00000000
 	// printfs in extra function
 	// one philosopher
 	// check for death or unlock fork if i cant take second one
@@ -35,9 +35,11 @@ int	main(int argc, char **argv)
 {
 	t_rules	rules;
 
-	if (argc != 5 && argc != 6)
-		ft_error(0);
-	input_check(argv, &rules);
+	if ((argc != 5 && argc != 6) || input_check(argv, &rules) == 1)
+	{
+		ft_error();
+		return (1);
+	}
 	printf("amount_phil =  %i\n", rules.amount_phil);
 	printf("time_die    =  %li\n", rules.time_die);
 	printf("time_eat    =  %li\n", rules.time_eat);

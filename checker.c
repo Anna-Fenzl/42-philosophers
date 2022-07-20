@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 14:24:01 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/19 17:48:38 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // thread that constantly checks if dead
 	// while loop is inefficient--> use a lock for rules->death 
 	// need to unlock the threads in themselfes
-void	*waiter(void *data)
+void	*checker(void *data)
 {
 	t_rules	*rules;
 	int		i;

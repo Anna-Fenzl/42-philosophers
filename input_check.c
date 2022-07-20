@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/19 11:32:50 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:25:40 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init(t_rules *rules)
 	}
 }
 
-void	input_check(char **input, t_rules *rules)
+int	input_check(char **input, t_rules *rules)
 {
 	rules->amount_phil = atoi_check(input[1]);
 	rules->time_die = atoi_check(input[2]);
@@ -43,7 +43,7 @@ void	input_check(char **input, t_rules *rules)
 	{
 		rules->must_eat = atoi_check(input[5]);
 		if (rules->must_eat < 0)
-			ft_error(2);
+			return (1);
 	}
 	else
 		rules->must_eat = -1;
@@ -54,5 +54,6 @@ void	input_check(char **input, t_rules *rules)
 	if (rules->amount_phil < 1 || rules->amount_phil > 200
 		|| rules->time_die < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 1)
-		ft_error(2);
+		return (1);
+	return (0);
 }
