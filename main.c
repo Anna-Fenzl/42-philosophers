@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 16:27:18 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 18:32:10 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 	let them start at the same time
 	logic for 1 2 3 philos
 	--> one is done
+	programm doesnt stop when they are dead
 	make all of them live longer
 	do the must eat stuff
 	need to put a lock around philo->data->death -->race conditions
@@ -47,6 +48,7 @@ int	main(int argc, char **argv)
 	printf("must_eat    = %i\n", rules.must_eat);
 	printf("\n-------------------------\n");
 	create(&rules);
+	free(rules.philo);
 	return (0);
 }
 	// system("leaks philo");

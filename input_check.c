@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 16:25:40 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/20 18:17:04 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ void	init(t_rules *rules)
 	i = 0;
 	while (i < rules->amount_phil)
 	{
-		s = &rules->philo[i];
+		s = &(rules->philo[i]);
 		s->data = rules;
 		s->death = false;
 		s->times_eaten = 0;
-		s->left_fork = rules->forks[i];
+		s->left_fork = &rules->forks[i];
 		if (i == rules->amount_phil - 1)
-			s->right_fork = rules->forks[0];
+			s->right_fork = &rules->forks[0];
 		else
-			s->right_fork = rules->forks[i + 1];
+			s->right_fork = &rules->forks[i + 1];
+		printf("he(%i) has this in left %p\n", i + 1, s->left_fork);
+		printf("he(%i) has this in right %p\n", i + 1, s->right_fork);
+		printf("-------------------------\n");
 		i++;
 	}
 }
@@ -49,7 +52,7 @@ int	input_check(char **input, t_rules *rules)
 		rules->must_eat = -1;
 	rules->birth = 0;
 	rules->philo = malloc(sizeof(t_philo) * (rules->amount_phil + 1));
-	if (rules->amount_phil >= 1)
+	if (rules->amount_phil > 0)
 		init(rules);
 	if (rules->amount_phil < 1 || rules->amount_phil > 200
 		|| rules->time_die < 0 || rules->time_eat < 0
