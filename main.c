@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 18:32:10 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 13:12:45 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int argc, char **argv)
 	printf("must_eat    = %i\n", rules.must_eat);
 	printf("\n-------------------------\n");
 	create(&rules);
-	free(rules.philo);
 	return (0);
 }
 	// system("leaks philo");

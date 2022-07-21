@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 16:37:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 13:53:33 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_philo
 	long				limit;
 	bool				left;
 	bool				right;
-	bool				death;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	t_rules				*data;
@@ -48,7 +47,8 @@ typedef struct s_rules
 	t_philo				*philo;
 	pthread_t			id_philo[201];
 	pthread_mutex_t		forks[200];
-	pthread_mutex_t		wait_to_start;
+	pthread_mutex_t		lock;
+	bool				death;
 
 }			t_rules;
 
@@ -59,9 +59,8 @@ long	timestamp(long birth);
 
 // utils
 void	ft_error(void);
-void	lock_start(t_rules *rules);
-void	unlock_start(t_rules *rules);
 void	unlock_forks(t_rules *rules);
+void	unlock_both_forks(t_philo *philo);
 int		print_feedback(t_philo *philo, char c);
 
 // input
@@ -72,9 +71,10 @@ void	create(t_rules *rules);
 
 // philos
 void	*work(void *data);
+int		take_forks_and_eat(t_philo *philo);
+
 
 // checker
 int		check_if_dead(t_philo *philo);
-void	*checker(void *data);
 
 #endif

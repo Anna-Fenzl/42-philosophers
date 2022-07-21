@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 18:17:04 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 13:12:41 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void	init(t_rules *rules)
 	{
 		s = &(rules->philo[i]);
 		s->data = rules;
-		s->death = false;
 		s->times_eaten = 0;
+		s->left = false;
+		s->right = false;
 		s->left_fork = &rules->forks[i];
 		if (i == rules->amount_phil - 1)
 			s->right_fork = &rules->forks[0];
@@ -51,6 +52,7 @@ int	input_check(char **input, t_rules *rules)
 	else
 		rules->must_eat = -1;
 	rules->birth = 0;
+	rules->death = false;
 	rules->philo = malloc(sizeof(t_philo) * (rules->amount_phil + 1));
 	if (rules->amount_phil > 0)
 		init(rules);

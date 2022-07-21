@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/20 18:35:07 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 13:45:01 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	print_feedback(t_philo *philo, char c)
 	long	birth;
 
 	birth = philo->data->birth;
-	if (philo->death == false)
+	pthread_mutex_lock(&philo->data->lock);
+	if (philo->data->death == false)
 	{
 		if (c == 't')
 			printf("%ld %d is thinking\n", timestamp(birth), philo->number);
@@ -70,15 +71,15 @@ int	print_feedback(t_philo *philo, char c)
 			printf("%ld %d is eating ---> %i * time\n", timestamp(birth),
 				philo->number, philo->times_eaten);
 		else if (c == 'r')
-			printf("%ld %d has taken right fork\n",
-				timestamp(birth), philo->number);
+			printf("%ld %d has taken right fork\n", timestamp(birth), philo->number);
 		else if (c == 'l')
-			printf("%ld %d has taken left fork\n",
-				timestamp(birth), philo->number);
+			printf("%ld %d has taken left fork\n", timestamp(birth), philo->number);
 		else if (c == 'd')
 			printf("%ld %d ------->DIED\n", timestamp(birth), philo->number);
+		pthread_mutex_unlock(&philo->data->lock);
 		return (0);
 	}
+	pthread_mutex_unlock(&philo->data->lock);
 	return (1);
 }
 
