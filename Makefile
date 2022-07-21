@@ -6,14 +6,14 @@
 #    By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:51:31 by afenzl            #+#    #+#              #
-#    Updated: 2022/07/21 13:50:27 by afenzl           ###   ########.fr        #
+#    Updated: 2022/07/21 18:51:49 by afenzl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -O3
 RM := rm -f
 
 SRC = main.c input_check.c time.c create.c checker.c work.c lock.c utils.c take_and_eat.c

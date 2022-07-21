@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 13:58:16 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:22:56 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 // forks are not same anymore --> they are again
 // always take the uneven ones first
 
+int	take_nap(t_philo *philo)
+{
+	print_feedback(philo, 's');
+	if (philo->limit <= get_current_time_ms() + philo->data->time_sleep)
+	{
+		while (get_current_time_ms() <= philo->limit)
+			continue ;
+		check_if_dead(philo);
+		return (1);
+	}
+	sleep_ms(philo->data->time_sleep);
+	return (0);
+}
+
 void	*work(void *data)
 {
 	t_philo	*philo;
@@ -22,12 +36,19 @@ void	*work(void *data)
 	philo = (t_philo *)data;
 	while (get_current_time_ms() < philo->data->birth)
 		continue ;
+	philo->limit = get_current_time_ms() + philo->data->time_die;
+	if ((philo->number & 1) == 1)
+		sleep_ms(2);
 	while (true)
 	{
-		philo->limit = get_current_time_ms() + philo->data->time_die;
 		if (print_feedback(philo, 't') == 1)
 			return (data);
 		if (take_forks_and_eat(philo) == 1)
 			return (data);
+		philo->limit = get_current_time_ms() + philo->data->time_die;
+		if (take_nap(philo) == 1)
+		{
+			return (data);
+		}
 	}
 }

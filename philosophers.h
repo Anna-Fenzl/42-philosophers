@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 13:53:33 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 13:59:22 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	create(t_rules *rules);
 // philos
 void	*work(void *data);
 int		take_forks_and_eat(t_philo *philo);
-
 
 // checker
 int		check_if_dead(t_philo *philo);

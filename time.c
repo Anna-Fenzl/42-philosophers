@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:18:06 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/18 16:36:00 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:57:36 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	sleep_ms(int ms)
 	long	start;
 
 	start = get_current_time_ms();
+	if (ms > 6)
+		usleep((ms - 6) * 1000);
 	while (start + ms > get_current_time_ms())
-		usleep(500);
+		;
 }

@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 13:56:54 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:23:03 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	check_if_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock);
-	printf("cur: %li lim: %li\n", get_current_time_ms(), philo->limit);
 	if (philo->data->death == true)
 	{
 		pthread_mutex_unlock(&philo->data->lock);
@@ -24,6 +23,8 @@ int	check_if_dead(t_philo *philo)
 	if (get_current_time_ms() >= philo->limit)
 	{
 		philo->data->death = true;
+		printf("%ld %d died\n",
+			timestamp(philo->data->birth), philo->number);
 		pthread_mutex_unlock(&philo->data->lock);
 		return (1);
 	}
