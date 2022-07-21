@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:13:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:23:58 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ long	timestamp(long birth);
 
 // utils
 void	ft_error(void);
-void	unlock_forks(t_rules *rules);
 void	unlock_both_forks(t_philo *philo);
 int		print_feedback(t_philo *philo, char c);
 
