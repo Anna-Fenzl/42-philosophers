@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:32:11 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:37:21 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int		eat(t_philo *philo);
 
 // checker
 int		check_if_dead(t_philo *philo);
+int		must_eat_checker(t_philo *philo);
 
 #endif
