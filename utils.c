@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:15:20 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:28:45 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ int	print_feedback(t_philo *philo, char c)
 		else if (c == 'e')
 			printf("%ld %d is eating\n", timestamp(birth),
 				philo->number);
-		else if (c == 'r')
-			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
-		else if (c == 'l')
+		else if (c == 'f')
 			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 		pthread_mutex_unlock(&philo->data->lock);
 		return (0);
@@ -81,7 +79,8 @@ int	print_feedback(t_philo *philo, char c)
 	return (1);
 }
 
-void	ft_error(void)
+void	unlock_both_forks(t_philo *philo)
 {
-	printf("ERROR:	input not valid\n");
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 }

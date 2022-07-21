@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:49:36 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:07:04 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:28:02 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	die_alone(t_philo *philo)
 {
-	print_feedback(philo, 'l');
+	print_feedback(philo, 'f');
 	sleep_ms(philo->data->time_die);
 	printf("%ld %d died\n", timestamp(philo->data->birth), philo->number);
 	return (1);
@@ -23,33 +23,34 @@ int	die_alone(t_philo *philo)
 int	uneven_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
-	print_feedback(philo, 'l');
+	print_feedback(philo, 'f');
 	if (check_if_dead(philo) == 1)
 	{
 		pthread_mutex_unlock(philo->left_fork);
 		return (1);
 	}
 	pthread_mutex_lock(philo->right_fork);
-	print_feedback(philo, 'r');
+	print_feedback(philo, 'f');
 	return (0);
 }
 
 int	even_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
-	print_feedback(philo, 'r');
+	print_feedback(philo, 'f');
 	if (check_if_dead(philo) == 1)
 	{
 		pthread_mutex_unlock(philo->right_fork);
 		return (1);
 	}
 	pthread_mutex_lock(philo->left_fork);
-	print_feedback(philo, 'l');
+	print_feedback(philo, 'f');
 	return (0);
 }
 
 // uneven take left forks
 // even take right forks
+// -->no race conditions
 int	who_takes_forks(t_philo *philo)
 {
 	if ((philo->number & 1) == 1)

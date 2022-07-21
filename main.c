@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:05:48 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:34:15 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@
 	// printf("time_sleep  =  %li\n", rules.time_sleep);
 	// printf("must_eat    = %i\n", rules.must_eat);
 	// printf("\n-------------------------\n");
+
 int	main(int argc, char **argv)
 {
 	t_rules	rules;
 
 	if ((argc != 5 && argc != 6) || input_check(argv, &rules) == 1)
 	{
-		ft_error();
+		printf("ERROR: input not valid!\n");
 		return (1);
 	}
-	create(&rules);
+	create_philos(&rules);
+	join_threads(&rules);
 	free(rules.philo);
 	return (0);
 }
