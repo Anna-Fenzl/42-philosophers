@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:49:36 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 18:39:05 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:07:04 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,4 @@ int	eat(t_philo *philo)
 	sleep_ms(philo->data->time_eat);
 	philo->times_eaten++;
 	return (check_if_dead(philo));
-}
-
-int	take_forks_and_eat(t_philo *philo)
-{
-	if (philo->data->amount_phil == 1)
-		return (die_alone(philo));
-	if (who_takes_forks(philo) == 1)
-		return (1);
-	if (eat(philo) == 1)
-	{
-		unlock_both_forks(philo);
-		return (1);
-	}
-	unlock_both_forks(philo);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 13:59:22 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:13:32 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ int		print_feedback(t_philo *philo, char c);
 // input
 int		input_check(char **input, t_rules *rules);
 long	atoi_check(const char *str);
-
 void	create(t_rules *rules);
 
 // philos
 void	*work(void *data);
-int		take_forks_and_eat(t_philo *philo);
+int		die_alone(t_philo *philo);
+int		who_takes_forks(t_philo *philo);
+int		eat(t_philo *philo);
 
 // checker
 int		check_if_dead(t_philo *philo);

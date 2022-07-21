@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 18:22:46 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:15:20 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,9 @@ int	print_feedback(t_philo *philo, char c)
 			printf("%ld %d is eating\n", timestamp(birth),
 				philo->number);
 		else if (c == 'r')
-			printf("%ld %d has taken a fork\n",
-				timestamp(birth), philo->number);
+			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 		else if (c == 'l')
-			printf("%ld %d has taken a fork\n",
-				timestamp(birth), philo->number);
+			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 		pthread_mutex_unlock(&philo->data->lock);
 		return (0);
 	}

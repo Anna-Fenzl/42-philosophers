@@ -6,12 +6,15 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 13:12:41 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:05:38 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+		// printf("he(%i) has this in left %p\n", i + 1, s->left_fork);
+		// printf("he(%i) has this in right %p\n", i + 1, s->right_fork);
+		// printf("-------------------------\n");
 void	init(t_rules *rules)
 {
 	int		i;
@@ -30,9 +33,6 @@ void	init(t_rules *rules)
 			s->right_fork = &rules->forks[0];
 		else
 			s->right_fork = &rules->forks[i + 1];
-		printf("he(%i) has this in left %p\n", i + 1, s->left_fork);
-		printf("he(%i) has this in right %p\n", i + 1, s->right_fork);
-		printf("-------------------------\n");
 		i++;
 	}
 }
