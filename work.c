@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:20:50 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/24 16:29:02 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,34 @@ int	take_forks_and_eat(t_philo *philo)
 	return (0);
 }
 
+int	thinking(t_philo *philo)
+{
+	print_feedback(philo, 't');
+	if (philo->limit <= get_current_time_ms() + philo->data->time_eat)
+	{
+		while (get_current_time_ms() <= philo->limit)
+			continue ;
+		check_if_dead(philo);
+		return (1);
+	}
+	sleep_ms(philo->data->time_eat);
+	return (check_if_dead(philo));
+}
+
 void	*work(void *data)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	while (get_current_time_ms() < philo->data->birth)
-		continue ;
+	sleep_ms(philo->data->birth - get_current_time_ms());
+	pthread_mutex_lock(&philo->data->lock);
+	printf("%li %i is thinking\n", timestamp(philo->data->birth), philo->number);
+	pthread_mutex_unlock(&philo->data->lock);
 	philo->limit = get_current_time_ms() + philo->data->time_die;
 	if ((philo->number & 1) == 1 && philo->data->amount_phil > 1)
-		sleep_ms(2);
+		sleep_ms(3);
 	while (true)
 	{
-		if (print_feedback(philo, 't') == 1)
-			return (data);
 		if (take_forks_and_eat(philo) == 1)
 			return (data);
 		philo->limit = get_current_time_ms() + philo->data->time_die;
@@ -62,5 +76,7 @@ void	*work(void *data)
 		{
 			return (data);
 		}
+		if (thinking(philo) == 1)
+			return (data);
 	}
 }
