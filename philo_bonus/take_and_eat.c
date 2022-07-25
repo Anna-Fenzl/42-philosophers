@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:49:36 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 15:40:40 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/25 16:41:32 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	eat(t_philo *philo)
 		return (1);
 	}
 	sleep_ms(philo->data->time_eat);
-	return (0);
+	philo->times_eaten++;
+	return (must_eat(philo));
 }
