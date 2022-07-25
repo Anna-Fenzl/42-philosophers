@@ -6,12 +6,13 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 16:45:47 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/25 18:11:42 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+// need to make them stop when one dies
 int	main(int argc, char **argv)
 {
 	t_rules	rules;
