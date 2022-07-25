@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/24 22:24:48 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/25 16:18:53 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int	input_check(char **input, t_rules *rules)
 		|| rules->time_die < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 1)
 		return (1);
+	memset(rules->id_philo, 0, 200);
 	return (0);
 }

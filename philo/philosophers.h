@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:37:21 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/24 19:41:07 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_philo
 	int					number;
 	int					times_eaten;
 	long				limit;
-	bool				left;
-	bool				right;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	t_rules				*data;
@@ -45,7 +43,7 @@ typedef struct s_rules
 	long				time_sleep;
 	long				birth;
 	t_philo				*philo;
-	pthread_t			id_philo[201];
+	pthread_t			id_philo[200];
 	pthread_mutex_t		forks[200];
 	pthread_mutex_t		lock;
 	bool				death;

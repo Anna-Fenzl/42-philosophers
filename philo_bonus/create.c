@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 00:22:10 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/25 16:17:22 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	open_semaphores(t_rules *rules)
 	rules->num_forks = sem_open("/forks",
 			O_CREAT, S_IRUSR | S_IWUSR, rules->amount_phil);
 	rules->lock = sem_open("/lock",
-			O_CREAT, S_IRUSR | S_IWUSR, rules->amount_phil);
-	rules->start = sem_open("/start",
-			O_CREAT, S_IRUSR | S_IWUSR, 0);
+			O_CREAT, S_IRUSR | S_IWUSR, 1);
 }
 
 void	create_philos(t_rules *rules)
@@ -58,7 +56,6 @@ void	wait_for_philos(t_rules *rules)
 	}
 	sem_close(rules->lock);
 	sem_close(rules->num_forks);
-	sem_close(rules->start);
 }
 
 void	create(t_rules *rules)

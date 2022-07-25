@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 00:22:42 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/25 16:16:52 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILOSOPHERS_H
 
 # include <limits.h>
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -49,7 +50,6 @@ typedef struct s_rules
 	int					id_philo[201];
 	sem_t				*num_forks;
 	sem_t				*lock;
-	sem_t				*start;
 	bool				death;
 
 }			t_rules;
@@ -67,8 +67,13 @@ void	create(t_rules *rules);
 // philos
 void	create_philos(t_rules *rules);
 void	philo_start(t_philo *philo);
+int		take_forks(t_philo *philo);
+int		eat(t_philo *philo);
 
 // utils
 int		print_feedback(t_philo *philo, char c);
+
+// checker
+int		check_if_dead(t_philo *philo);
 
 #endif
