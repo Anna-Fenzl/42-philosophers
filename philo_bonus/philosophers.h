@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:11:25 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:47:03 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ typedef struct s_rules
 	int					id_philo[201];
 	t_philo				*philo;
 	sem_t				*num_forks;
-	sem_t				*lock;
-
+	sem_t				*death;
 }			t_rules;
 
 // time

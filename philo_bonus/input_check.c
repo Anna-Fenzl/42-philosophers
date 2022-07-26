@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:05:02 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:46:34 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	input_check(char **input, t_rules *rules)
 		rules->must_eat = -1;
 	rules->birth = 0;
 	rules->num_forks = 0;
-	rules->lock = 0;
 	if (rules->amount_phil < 1 || rules->amount_phil > 200
 		|| rules->time_die < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 1)

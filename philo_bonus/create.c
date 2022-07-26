@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:08:07 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:55:45 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,18 @@ void	create_philos(t_rules *rules)
 // seems like waitpid doesnt work --> using wait(NULL) now
 void	wait_for_philos(t_rules *rules)
 {
+	int	ret;
+
+	wait(&ret);
+	printf("return is %i\n", ret);
+	rules->death = sem_open("not_existing", O_CREAT, S_IRUSR | S_IWUSR, 0);
+	printf("_________________________\n");
 	while (wait(NULL) != -1 || errno != ECHILD)
 		continue ;
-	printf("_________________________\n");
 	sem_close(rules->num_forks);
 	sem_unlink("/forks");
+	sem_close(rules->death);
+	sem_unlink("not_existing");
 }
 
 void	create(t_rules *rules)
