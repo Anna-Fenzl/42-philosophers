@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 16:40:53 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:11:25 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILOSOPHERS_H
 
 # include <limits.h>
+# include <errno.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -46,11 +47,10 @@ typedef struct s_rules
 	long				time_eat;
 	long				time_sleep;
 	long				birth;
-	t_philo				*philo;
 	int					id_philo[201];
+	t_philo				*philo;
 	sem_t				*num_forks;
 	sem_t				*lock;
-	bool				death;
 
 }			t_rules;
 
@@ -67,14 +67,14 @@ void	create(t_rules *rules);
 // philos
 void	create_philos(t_rules *rules);
 void	philo_start(t_philo *philo);
-int		take_forks(t_philo *philo);
-int		eat(t_philo *philo);
+void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
 
 // utils
-int		print_feedback(t_philo *philo, char c);
+void	print_feedback(t_philo *philo, char c);
 
 // checker
-int		check_if_dead(t_philo *philo);
-int		must_eat(t_philo *philo);
+void	check_if_dead(t_philo *philo);
+void	must_eat(t_philo *philo);
 
 #endif

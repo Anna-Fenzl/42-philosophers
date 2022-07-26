@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:22:27 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 16:18:53 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:05:02 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init(t_rules *rules)
 	}
 }
 
+// need to protect malloc
 int	input_check(char **input, t_rules *rules)
 {
 	rules->amount_phil = atoi_check(input[1]);
@@ -45,7 +46,6 @@ int	input_check(char **input, t_rules *rules)
 	else
 		rules->must_eat = -1;
 	rules->birth = 0;
-	rules->death = false;
 	rules->num_forks = 0;
 	rules->lock = 0;
 	if (rules->amount_phil < 1 || rules->amount_phil > 200

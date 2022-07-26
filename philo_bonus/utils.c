@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/25 17:36:06 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:02:55 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,18 @@ long	atoi_check(const char *str)
 	return (res * n);
 }
 
-int	print_feedback(t_philo *philo, char c)
+void	print_feedback(t_philo *philo, char c)
 {
 	long	birth;
 
 	birth = philo->data->birth;
-	sem_wait(philo->data->lock);
-	if (philo->data->death == false)
-	{
-		if (c == 't')
-			printf("%ld %d is thinking\n", timestamp(birth), philo->number);
-		else if (c == 's')
-			printf("%ld %d is sleeping\n", timestamp(birth), philo->number);
-		else if (c == 'e')
-			printf("%ld %d is eating\n", timestamp(birth),
-				philo->number);
-		else if (c == 'f')
-			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
-		sem_post(philo->data->lock);
-		return (0);
-	}
-	sem_post(philo->data->lock);
-	return (1);
+	if (c == 't')
+		printf("%ld %d is thinking\n", timestamp(birth), philo->number);
+	else if (c == 's')
+		printf("%ld %d is sleeping\n", timestamp(birth), philo->number);
+	else if (c == 'e')
+		printf("%ld %d is eating\n", timestamp(birth),
+			philo->number);
+	else if (c == 'f')
+		printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 }
