@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:12:18 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/27 14:51:26 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 void	take_forks_and_eat(t_philo *philo)
 {
-	int	value;
-
 	take_forks(philo);
 	eat(philo);
 	sem_post(philo->data->num_forks);
 	sem_post(philo->data->num_forks);
-	{
-		if (sem_getvalue(philo->data->num_forks, &value) == -1)
-			printf("sem_getvalue\n");
-		printf("\n \nVALUE OF THE SEMAPHORE FORKS --> %d\n", value);
-	}
 	check_if_dead(philo);
 }
 

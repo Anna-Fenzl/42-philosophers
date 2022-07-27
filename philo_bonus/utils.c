@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:02:55 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/27 14:53:32 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,12 @@ void	print_feedback(t_philo *philo, char c)
 			philo->number);
 	else if (c == 'f')
 		printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
+}
+
+void	rem_old_semaphores(t_rules *rules)
+{
+	sem_close(rules->death);
+	sem_unlink("not_existing");
+	sem_close(rules->num_forks);
+	sem_unlink("/forks");
 }

@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:47:03 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/27 14:53:49 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	eat(t_philo *philo);
 
 // utils
 void	print_feedback(t_philo *philo, char c);
+void	rem_old_semaphores(t_rules *rules);
 
 // checker
 void	check_if_dead(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/26 16:24:22 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/27 14:52:33 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	main(int argc, char **argv)
 		printf("ERROR: input not valid!\n");
 		return (1);
 	}
-	sem_close(rules.num_forks);
-	sem_unlink("/forks");
+	rem_old_semaphores(&rules);
 	create(&rules);
 	free(rules.philo);
 	return (0);
