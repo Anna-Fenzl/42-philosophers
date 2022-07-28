@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 14:53:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/28 16:33:24 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,16 @@ void	rem_old_semaphores(t_rules *rules)
 	sem_unlink("not_existing");
 	sem_close(rules->num_forks);
 	sem_unlink("/forks");
+}
+
+void	post_sems(sem_t *sem)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		sem_post(sem);
+		i++;
+	}
 }

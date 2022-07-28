@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 14:53:49 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/28 16:37:28 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <unistd.h>
 # include <stdbool.h>
 # include <sys/time.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-# include <pthread.h>
 # include <fcntl.h>
 # include <semaphore.h>
 
@@ -72,6 +70,7 @@ void	eat(t_philo *philo);
 // utils
 void	print_feedback(t_philo *philo, char c);
 void	rem_old_semaphores(t_rules *rules);
+void	post_sems(sem_t *sem);
 
 // checker
 void	check_if_dead(t_philo *philo);

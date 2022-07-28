@@ -6,14 +6,12 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 14:52:33 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/28 16:39:14 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// need to make them stop when one dies
-// need to add -Werror in Makefile
 int	main(int argc, char **argv)
 {
 	t_rules	rules;
