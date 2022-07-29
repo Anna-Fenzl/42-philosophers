@@ -6,7 +6,7 @@
 #    By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 15:51:31 by afenzl            #+#    #+#              #
-#    Updated: 2022/07/26 16:47:26 by afenzl           ###   ########.fr        #
+#    Updated: 2022/07/28 17:32:38 by afenzl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -pthread -o $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(BONOBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)

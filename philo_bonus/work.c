@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 15:55:56 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/29 15:47:43 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	philo_start(t_philo *philo)
 	while (true)
 	{
 		take_forks_and_eat(philo);
+		philo->limit = get_current_time_ms() + philo->data->time_die;
 		take_nap(philo);
 		thinking(philo);
-		philo->limit = get_current_time_ms() + philo->data->time_die;
 	}
 }

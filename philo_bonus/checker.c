@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:02:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/28 16:39:48 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/07/29 16:17:52 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	check_if_dead(t_philo *philo)
 		philo->data->death = sem_open("not_existing",
 				O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);
 		post_sems(philo->data->num_forks);
-		sleep_ms(3);
-		printf("%ld %d died\n",
-			timestamp(philo->data->birth) - 3, philo->number);
+		sleep_ms(4);
+		if (philo->data->death != SEM_FAILED)
+			printf("%ld %d died\n",
+				timestamp(philo->data->birth) - 4, philo->number);
 		exit(1);
 	}
 	philo->data->death = sem_open("not_existing", S_IRUSR | S_IWUSR, 0);
@@ -35,7 +36,6 @@ void	must_eat(t_philo *philo)
 {
 	if (philo->times_eaten == philo->data->must_eat)
 	{
-		printf("he (%i) exited\n", philo->number);
 		exit (1);
 	}
 }
