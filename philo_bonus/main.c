@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:17:05 by afenzl            #+#    #+#             */
-/*   Updated: 2022/08/01 12:46:33 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/01 14:47:13 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 		printf("ERROR: input not valid!\n");
 		return (1);
 	}
-	rem_old_semaphores(&rules);
+	rem_semaphores(&rules);
 	create(&rules);
 	free(rules.philo);
 	return (0);

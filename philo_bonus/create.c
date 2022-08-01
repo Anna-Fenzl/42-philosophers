@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:46:30 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 14:50:59 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/01 14:46:53 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	open_semaphores(t_rules *rules)
 			O_CREAT, S_IRUSR | S_IWUSR, rules->amount_phil);
 	if (rules->num_forks == SEM_FAILED)
 		printf("failed to create sem->num_forks\n");
+	rules->print = sem_open("/print",
+			O_CREAT, S_IRUSR | S_IWUSR, rules->amount_phil);
+	if (rules->print == SEM_FAILED)
+		printf("failed to create sem->print\n");
 }
 
 void	create_philos(t_rules *rules)
@@ -47,10 +51,7 @@ void	wait_for_philos(t_rules *rules)
 {
 	while (wait(NULL) != -1 || errno != ECHILD)
 		continue ;
-	sem_close(rules->num_forks);
-	sem_unlink("/forks");
-	sem_close(rules->death);
-	sem_unlink("not_existing");
+	rem_semaphores(rules);
 }
 
 void	create(t_rules *rules)

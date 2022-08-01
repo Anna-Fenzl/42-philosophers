@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/28 16:37:28 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/01 14:47:21 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_rules
 	t_philo				*philo;
 	sem_t				*num_forks;
 	sem_t				*death;
+	sem_t				*print;
+
 }			t_rules;
 
 // time
@@ -69,7 +71,7 @@ void	eat(t_philo *philo);
 
 // utils
 void	print_feedback(t_philo *philo, char c);
-void	rem_old_semaphores(t_rules *rules);
+void	rem_semaphores(t_rules *rules);
 void	post_sems(sem_t *sem);
 
 // checker

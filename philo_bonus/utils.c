@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/28 16:33:24 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/01 14:48:48 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	print_feedback(t_philo *philo, char c)
 {
 	long	birth;
 
+	sem_wait(philo->data->print);
 	birth = philo->data->birth;
 	if (c == 't')
 		printf("%ld %d is thinking\n", timestamp(birth), philo->number);
@@ -71,14 +72,17 @@ void	print_feedback(t_philo *philo, char c)
 			philo->number);
 	else if (c == 'f')
 		printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
+	sem_post(philo->data->print);
 }
 
-void	rem_old_semaphores(t_rules *rules)
+void	rem_semaphores(t_rules *rules)
 {
 	sem_close(rules->death);
 	sem_unlink("not_existing");
 	sem_close(rules->num_forks);
 	sem_unlink("/forks");
+	sem_close(rules->print);
+	sem_unlink("/print");
 }
 
 void	post_sems(sem_t *sem)
