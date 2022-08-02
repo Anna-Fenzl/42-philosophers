@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 15:58:12 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/29 16:09:08 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/02 17:28:30 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	take_nap(t_philo *philo)
 {
-	print_feedback(philo, 's');
+	print_feedback(philo, nap);
 	if (philo->limit <= get_current_time_ms() + philo->data->time_sleep)
 	{
 		while (get_current_time_ms() <= philo->limit)
@@ -32,7 +32,7 @@ int	take_forks_and_eat(t_philo *philo)
 		return (die_alone(philo));
 	if (who_takes_forks(philo) == 1)
 		return (1);
-	if (eat(philo) == 1)
+	if (eating(philo) == 1)
 	{
 		unlock_both_forks(philo);
 		return (1);
@@ -43,7 +43,7 @@ int	take_forks_and_eat(t_philo *philo)
 
 int	thinking(t_philo *philo)
 {
-	print_feedback(philo, 't');
+	print_feedback(philo, think);
 	if (philo->limit <= get_current_time_ms() + philo->data->time_eat)
 	{
 		while (get_current_time_ms() <= philo->limit)

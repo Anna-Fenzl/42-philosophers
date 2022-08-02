@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/24 21:29:05 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/02 17:28:39 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ long	atoi_check(const char *str)
 	return (res * n);
 }
 
-int	print_feedback(t_philo *philo, char c)
+int	print_feedback(t_philo *philo, enum e_act act)
 {
 	long	birth;
 
@@ -65,14 +65,14 @@ int	print_feedback(t_philo *philo, char c)
 	pthread_mutex_lock(&philo->data->lock);
 	if (philo->data->death == false)
 	{
-		if (c == 't')
+		if (act == think)
 			printf("%ld %d is thinking\n", timestamp(birth), philo->number);
-		else if (c == 's')
+		else if (act == nap)
 			printf("%ld %d is sleeping\n", timestamp(birth), philo->number);
-		else if (c == 'e')
+		else if (act == eat)
 			printf("%ld %d is eating\n", timestamp(birth),
 				philo->number);
-		else if (c == 'f')
+		else if (act == take)
 			printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 		pthread_mutex_unlock(&philo->data->lock);
 		return (0);

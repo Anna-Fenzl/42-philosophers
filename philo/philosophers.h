@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/24 19:41:07 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/08/02 17:28:14 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_rules
 
 }			t_rules;
 
+enum e_act {take, eat, think, nap};
+
 // time
 void	sleep_ms(int ms);
 long	get_current_time_ms(void);
@@ -57,7 +59,7 @@ long	timestamp(long birth);
 
 // utils
 void	unlock_both_forks(t_philo *philo);
-int		print_feedback(t_philo *philo, char c);
+int		print_feedback(t_philo *philo, enum e_act act);
 
 // input
 int		input_check(char **input, t_rules *rules);
@@ -71,7 +73,7 @@ void	join_threads(t_rules *rules);
 void	*work(void *data);
 int		die_alone(t_philo *philo);
 int		who_takes_forks(t_philo *philo);
-int		eat(t_philo *philo);
+int		eating(t_philo *philo);
 
 // checker
 int		check_if_dead(t_philo *philo);
