@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:08:23 by afenzl            #+#    #+#             */
-/*   Updated: 2022/08/01 14:47:21 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:10:26 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <semaphore.h>
+
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define RESET "\033[0m"
 
 typedef struct s_rules	t_rules;
 

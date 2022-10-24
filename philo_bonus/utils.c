@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:16:14 by afenzl            #+#    #+#             */
-/*   Updated: 2022/08/01 14:48:48 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:17:23 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	print_feedback(t_philo *philo, char c)
 	else if (c == 's')
 		printf("%ld %d is sleeping\n", timestamp(birth), philo->number);
 	else if (c == 'e')
-		printf("%ld %d is eating\n", timestamp(birth),
-			philo->number);
+		printf("%s%ld %d is eating%s\n", GREEN, timestamp(birth),
+			philo->number, RESET);
 	else if (c == 'f')
 		printf("%ld %d has taken a fork\n", timestamp(birth), philo->number);
 	sem_post(philo->data->print);
@@ -78,10 +78,10 @@ void	print_feedback(t_philo *philo, char c)
 void	rem_semaphores(t_rules *rules)
 {
 	sem_close(rules->death);
-	sem_unlink("not_existing");
 	sem_close(rules->num_forks);
-	sem_unlink("/forks");
 	sem_close(rules->print);
+	sem_unlink("not_existing");
+	sem_unlink("/forks");
 	sem_unlink("/print");
 }
 

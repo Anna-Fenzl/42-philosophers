@@ -6,7 +6,7 @@
 /*   By: afenzl <afenzl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:49:36 by afenzl            #+#    #+#             */
-/*   Updated: 2022/07/27 15:02:32 by afenzl           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:15:51 by afenzl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	die_alone(t_philo *philo)
 {
 	sleep_ms(philo->data->time_die);
-	printf("%ld %d died\n", timestamp(philo->data->birth), philo->number);
+	printf("%s%ld %d died\n%s",
+		RED, timestamp(philo->data->birth), philo->number, RESET);
 	exit (1);
 }
 
