@@ -36,6 +36,9 @@ i.e:
 $>./philosophers 4 800 200 200 5
 ```
 
+To visualize the behavior of the philosopers, just insert the output in this [Visualizer](https://nafuka11.github.io/philosophers-visualizer/).
+The times shouldn't be smaller than 60 and there shouldn't be more than 200 philosphers. 
+
 ## Mandatory part
 + Each of the philosophers is a __thread__.
 + There is the same amount of forks as there are philosophers.
@@ -52,5 +55,5 @@ a __semaphore__.
 
 ## What i learned:
 + how to create and use `threads` with the <pthread.h> 
-+ using mutexes and semaphores, to prevent data races.
-+ preventing deadlocks and livelocks
++ using `mutexes` and `semaphores`, to prevent data races.
++ preventing `deadlocks` and `livelocks`
